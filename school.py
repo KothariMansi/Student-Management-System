@@ -3,7 +3,7 @@ from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
 import sys
 from PyQt5.uic import loadUiType
-from DatabaseManager import DatabaseManager
+from DatabaseManager import DatabaseManager, DatabaseManager
 
 ui, _ = loadUiType('school.ui')
 
@@ -18,7 +18,9 @@ class MainApp(QMainWindow, ui):
         self.tbUsername.setFocus()
         self.btnLogin.clicked.connect(self.login)
         self.AddStd.triggered.connect(self.showAddNewTab)
+        self.addAge.setValidator(QIntValidator())
         self.btnSaveStd.clicked.connect(self.OnSaveClick)
+
 
 
     def keyPressEvent(self, e):
@@ -44,7 +46,7 @@ class MainApp(QMainWindow, ui):
             elif self.addEmail.hasFocus():
                 self.addStandard.setFocus()
             elif self.addStandard.hasFocus():
-                self.btnSaveStd.setFocus()
+                self.OnSaveClick()
         else:
             super().keyPressEvent(e)
 
@@ -83,7 +85,7 @@ class MainApp(QMainWindow, ui):
 
         print(name, regis_num, gender, dob, age, address, phone, email, standard)
         try:
-            db = DatabaseManager()
+            db = DatabaseManager("localhost", "root", "mansi_116", "school")
             db.add_student(regis_num, name, gender, dob, int(age), address, phone, email, standard)
             print("Added Successfully")
         except Exception as e:
