@@ -85,7 +85,7 @@ class MainApp(QMainWindow, ui):
 
         print(name, regis_num, gender, dob, age, address, phone, email, standard)
         try:
-            db = DatabaseManager("localhost", "root", "mansi_116", "school")
+            db = DatabaseManager("localhost", "root", "*********", "school")
             db.add_student(regis_num, name, gender, dob, int(age), address, phone, email, standard)
             print("Added Successfully")
         except Exception as e:
