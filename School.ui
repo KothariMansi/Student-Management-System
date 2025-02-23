@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1262</width>
+    <width>1264</width>
     <height>868</height>
    </rect>
   </property>
@@ -741,7 +741,7 @@ color: rgb(147, 56, 70);</string>
      <attribute name="title">
       <string>Edit Student</string>
      </attribute>
-     <widget class="QLineEdit" name="lineEdit_10">
+     <widget class="QLineEdit" name="editDob">
       <property name="geometry">
        <rect>
         <x>310</x>
@@ -763,7 +763,7 @@ color: rgb(157, 49, 49);</string>
        <enum>QLineEdit::Normal</enum>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_11">
+     <widget class="QLineEdit" name="editAge">
       <property name="geometry">
        <rect>
         <x>310</x>
@@ -788,7 +788,7 @@ color: rgb(157, 49, 49);</string>
        <enum>QLineEdit::Normal</enum>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_3">
+     <widget class="QComboBox" name="editGender">
       <property name="geometry">
        <rect>
         <x>310</x>
@@ -873,7 +873,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <string notr="true">color: rgb(255, 222, 223);</string>
       </property>
       <property name="text">
-       <string>Gender</string>
+       <string>Standard</string>
       </property>
      </widget>
      <widget class="QLabel" name="label_22">
@@ -939,7 +939,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <string>Phone</string>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_12">
+     <widget class="QLineEdit" name="editEmail">
       <property name="geometry">
        <rect>
         <x>850</x>
@@ -961,32 +961,7 @@ color: rgb(157, 49, 49);</string>
        <enum>QLineEdit::Normal</enum>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_13">
-      <property name="geometry">
-       <rect>
-        <x>850</x>
-        <y>150</y>
-        <width>331</width>
-        <height>101</height>
-       </rect>
-      </property>
-      <property name="font">
-       <font>
-        <pointsize>14</pointsize>
-       </font>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 235, 235);
-color: rgb(157, 49, 49);</string>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="echoMode">
-       <enum>QLineEdit::Normal</enum>
-      </property>
-     </widget>
-     <widget class="QLineEdit" name="lineEdit_14">
+     <widget class="QLineEdit" name="editPhone">
       <property name="geometry">
        <rect>
         <x>850</x>
@@ -1068,7 +1043,7 @@ color: rgb(157, 49, 49);r</string>
        <string>Date Of Birth</string>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_4">
+     <widget class="QComboBox" name="editStandard">
       <property name="geometry">
        <rect>
         <x>850</x>
@@ -1159,7 +1134,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QLineEdit" name="lineEdit_16">
+     <widget class="QLineEdit" name="editName">
       <property name="geometry">
        <rect>
         <x>310</x>
@@ -1181,21 +1156,6 @@ color: rgb(157, 49, 49);</string>
        <enum>QLineEdit::Normal</enum>
       </property>
      </widget>
-     <widget class="QComboBox" name="comboBox_5">
-      <property name="geometry">
-       <rect>
-        <x>310</x>
-        <y>150</y>
-        <width>331</width>
-        <height>41</height>
-       </rect>
-      </property>
-      <property name="styleSheet">
-       <string notr="true">background-color: rgb(255, 235, 235);
-color: rgb(157, 49, 49);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-      </property>
-     </widget>
      <widget class="QPushButton" name="deleteStd">
       <property name="geometry">
        <rect>
@@ -1214,7 +1174,7 @@ color: rgb(147, 56, 70);</string>
        <string>Delete</string>
       </property>
      </widget>
-     <widget class="QPushButton" name="pushButton_4">
+     <widget class="QPushButton" name="editStd">
       <property name="geometry">
        <rect>
         <x>730</x>
@@ -1230,6 +1190,43 @@ color: rgb(147, 56, 70);</string>
       </property>
       <property name="text">
        <string>Edit</string>
+      </property>
+     </widget>
+     <widget class="QLineEdit" name="editRegis_num">
+      <property name="geometry">
+       <rect>
+        <x>310</x>
+        <y>150</y>
+        <width>331</width>
+        <height>41</height>
+       </rect>
+      </property>
+      <property name="font">
+       <font>
+        <pointsize>14</pointsize>
+       </font>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 235, 235);
+color: rgb(157, 49, 49);</string>
+      </property>
+      <property name="echoMode">
+       <enum>QLineEdit::Normal</enum>
+      </property>
+     </widget>
+     <widget class="QPlainTextEdit" name="editAddress">
+      <property name="geometry">
+       <rect>
+        <x>850</x>
+        <y>150</y>
+        <width>331</width>
+        <height>101</height>
+       </rect>
+      </property>
+      <property name="styleSheet">
+       <string notr="true">background-color: rgb(255, 235, 235);
+color: rgb(157, 49, 49);
+font: 14pt &quot;MS Shell Dlg 2&quot;;s</string>
       </property>
      </widget>
     </widget>
@@ -3385,7 +3382,7 @@ color: rgb(147, 56, 70);</string>
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>1262</width>
+     <width>1264</width>
      <height>25</height>
     </rect>
    </property>

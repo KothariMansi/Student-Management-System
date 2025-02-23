@@ -1,7 +1,5 @@
-from distutils.util import execute
-
 import mysql.connector
-from mysql.connector import Error, connect
+from mysql.connector import Error
 
 
 class DatabaseManager:
