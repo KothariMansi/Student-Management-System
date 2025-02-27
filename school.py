@@ -31,6 +31,8 @@ class MainApp(QMainWindow, ui):
         self.id = 0
         self.deleteStd.clicked.connect(self.OnDeleteClick)
         self.editStd.clicked.connect(self.OnEditClick)
+        self.AddEditDelMarks.triggered.connect(self.showAddDeleteEditMarkTab)
+        self.btnSaveMark.clicked.connect(self.AddMarks)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Return or e.key() == Qt.Key_Enter:
@@ -77,20 +79,20 @@ class MainApp(QMainWindow, ui):
                 self.editEmail.setFocus()
             elif self.editEmail.hasFocus():
                 self.editStandard.setFocus()
-        #     elif self.editStandard.hasFocus():
-        #         self.editStd.setFocusPolicy(Qt.StrongFocus)
-        #         self.editStd.setFocus()
-        #         self.editStd.setFoucs()
-        #     elif self.editStd.hasFocus():
-        #         self.OnEditClick()
-        #     elif self.deleteStd.hasFocus():
-        #         self.OnDeleteClick()
-        # elif e.key() == Qt.Key_Left and self.editStd.hasFocus():
-        #     self.deleteStd.setFocusPolicy(Qt.StrongFocus)
-        #     self.deleteStd.setFocus()
-        # elif e.key() == Qt.Key_Right and self.deleteStd.hasFocus():
-        #     self.editStd.setFocusPolicy(Qt.StrongFocus)
-        #     self.editStd.setFocus()
+            elif self.AddMarkRegisNum.hasFocus():
+                try:
+                    self.searchDialog = SearchDialog(callback=self.handle_selected_value_of_add_marks)
+                    self.searchDialog.show()
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"An error occurred: {e}")
+            elif self.AddExamName.hasFocus():
+                self.AddLanguage.setFocus()
+            elif self.AddLanguage.hasFocus():
+                self.AddMaths.setFocus()
+            elif self.AddMaths.hasFocus():
+                self.AddScience.setFocus()
+            elif self.AddScience.hasFocus():
+                self.AddSocial.setFocus()
         else:
             super().keyPressEvent(e)
 
@@ -179,6 +181,7 @@ class MainApp(QMainWindow, ui):
             )
             print("Updated Successfully")
             self.editScreenClear()
+            self.id = 0
         except Exception as e:
             print("Error in updating:", e)
 
@@ -201,6 +204,45 @@ class MainApp(QMainWindow, ui):
         self.editPhone.clear()
         self.editEmail.clear()
         self.editStandard.setCurrentIndex(0)
+
+    def showAddDeleteEditMarkTab(self):
+        self.tabWidget.setCurrentIndex(4)
+        self.AddMarkRegisNum.setFocus()
+
+    def handle_selected_value_of_add_marks(self, value):
+        data = self.db.fetch_query("select registration_number from student where id=%s", (value, ))
+        data = data[0]
+        if data:
+            self.AddMarkRegisNum.setText(data[0])
+        self.AddExamName.setFocus()
+
+    def AddMarks(self):
+        if self.AddMarkRegisNum.text() != "" and self.AddExamName.text() != "":
+            try:
+                self.db.execute_query(
+                    "insert into mark(registration_number, exam_name, language, english, maths, science, social) values (%s, %s, %s, %s, %s, %s, %s)",
+                    (
+                        self.AddMarkRegisNum.text(),
+                        self.AddExamName.text(),
+                        int(self.AddLanguage.text()),
+                        int(self.AddLanguage.text()),
+                        int(self.AddMaths.text()),
+                        int(self.AddScience.text()),
+                        int(self.AddSocial.text())
+                    )
+                )
+                print("Marks Added Successfully")
+                self.clearAddMarks()
+            except Exception as e:
+                print("Error in adding marks:", e)
+
+    def clearAddMarks(self):
+        self.AddMarkRegisNum.clear()
+        self.AddExamName.clear()
+        self.AddLanguage.clear()
+        self.AddMaths.clear()
+        self.AddScience.clear()
+        self.AddSocial.clear()
 
 def main():
     app = QApplication(sys.argv)

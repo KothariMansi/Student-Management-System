@@ -62,7 +62,7 @@ background-color: rgb(157, 49, 49);</string>
      <string notr="true">background-color: rgb(157, 49, 49);</string>
     </property>
     <property name="currentIndex">
-     <number>3</number>
+     <number>4</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -1293,7 +1293,7 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;s</string>
         <string>Registration Number</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_17">
+      <widget class="QLineEdit" name="AddExamName">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1333,7 +1333,7 @@ color: rgb(157, 49, 49);r</string>
         <string>Exam Name</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_18">
+      <widget class="QLineEdit" name="AddLanguage">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1373,22 +1373,7 @@ color: rgb(157, 49, 49);r</string>
         <string>Language</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_6">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>120</y>
-         <width>331</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 235, 235);
-color: rgb(157, 49, 49);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_19">
+      <widget class="QLineEdit" name="AddMaths">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1428,7 +1413,7 @@ color: rgb(157, 49, 49);r</string>
         <string>Maths</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_20">
+      <widget class="QLineEdit" name="AddScience">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1468,7 +1453,7 @@ color: rgb(157, 49, 49);r</string>
         <string>Science</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_21">
+      <widget class="QLineEdit" name="AddSocial">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1508,7 +1493,7 @@ color: rgb(157, 49, 49);r</string>
         <string>Social Science</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_5">
+      <widget class="QPushButton" name="btnSaveMark">
        <property name="geometry">
         <rect>
          <x>80</x>
@@ -1524,6 +1509,25 @@ color: rgb(147, 56, 70);</string>
        </property>
        <property name="text">
         <string>Save</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="AddMarkRegisNum">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>120</y>
+         <width>331</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 235, 235);
+color: rgb(157, 49, 49);r</string>
        </property>
       </widget>
      </widget>
@@ -1607,7 +1611,7 @@ color: rgb(147, 56, 70);</string>
         <string>Exam Name</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_23">
+      <widget class="QLineEdit" name="EditLanguage">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1647,22 +1651,7 @@ color: rgb(157, 49, 49);r</string>
         <string>Language</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_7">
-       <property name="geometry">
-        <rect>
-         <x>210</x>
-         <y>120</y>
-         <width>331</width>
-         <height>41</height>
-        </rect>
-       </property>
-       <property name="styleSheet">
-        <string notr="true">background-color: rgb(255, 235, 235);
-color: rgb(157, 49, 49);
-font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
-       </property>
-      </widget>
-      <widget class="QLineEdit" name="lineEdit_24">
+      <widget class="QLineEdit" name="EditMaths">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1702,7 +1691,7 @@ color: rgb(157, 49, 49);r</string>
         <string>Maths</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_25">
+      <widget class="QLineEdit" name="EditScience">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1742,7 +1731,7 @@ color: rgb(157, 49, 49);r</string>
         <string>Science</string>
        </property>
       </widget>
-      <widget class="QLineEdit" name="lineEdit_26">
+      <widget class="QLineEdit" name="EditSocial">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1782,7 +1771,7 @@ color: rgb(157, 49, 49);r</string>
         <string>Social Science</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_6">
+      <widget class="QPushButton" name="btnEditMark">
        <property name="geometry">
         <rect>
          <x>300</x>
@@ -1800,7 +1789,7 @@ color: rgb(147, 56, 70);</string>
         <string>Edit</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_7">
+      <widget class="QPushButton" name="btnDeleteMark">
        <property name="geometry">
         <rect>
          <x>20</x>
@@ -1818,7 +1807,7 @@ color: rgb(147, 56, 70);</string>
         <string>Delete</string>
        </property>
       </widget>
-      <widget class="QPushButton" name="pushButton_8">
+      <widget class="QPushButton" name="btnGetMarks">
        <property name="geometry">
         <rect>
          <x>420</x>
@@ -1836,7 +1825,7 @@ color: rgb(147, 56, 70);</string>
         <string>Get Marks</string>
        </property>
       </widget>
-      <widget class="QComboBox" name="comboBox_10">
+      <widget class="QComboBox" name="EditExamName">
        <property name="geometry">
         <rect>
          <x>210</x>
@@ -1849,6 +1838,25 @@ color: rgb(147, 56, 70);</string>
         <string notr="true">background-color: rgb(255, 235, 235);
 color: rgb(157, 49, 49);
 font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
+       </property>
+      </widget>
+      <widget class="QLineEdit" name="EditMarkRegisNum">
+       <property name="geometry">
+        <rect>
+         <x>210</x>
+         <y>120</y>
+         <width>331</width>
+         <height>41</height>
+        </rect>
+       </property>
+       <property name="font">
+        <font>
+         <pointsize>14</pointsize>
+        </font>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">background-color: rgb(255, 235, 235);
+color: rgb(157, 49, 49);r</string>
        </property>
       </widget>
      </widget>
