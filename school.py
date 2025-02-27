@@ -30,6 +30,7 @@ class MainApp(QMainWindow, ui):
         self.editRegis_num.setReadOnly(True)
         self.id = 0
         self.deleteStd.clicked.connect(self.OnDeleteClick)
+        self.editStd.clicked.connect(self.OnEditClick)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Return or e.key() == Qt.Key_Enter:
@@ -170,7 +171,16 @@ class MainApp(QMainWindow, ui):
 
     def OnEditClick(self):
         #Query to update Data
-        pass
+        try:
+            self.db.execute_query(
+                "Update student set full_name=%s, gender=%s, date_of_birth=%s, age=%s, address=%s, phone=%s, email=%s, standard=%s where id=%s",
+                (self.editName.text(), self.editGender.currentText(), self.editDob.text(), int(self.editAge.text()), self.editAddress.toPlainText(),
+                 self.editPhone.text(), self.editEmail.text(), self.editStandard.currentText(), self.id)
+            )
+            print("Updated Successfully")
+            self.editScreenClear()
+        except Exception as e:
+            print("Error in updating:", e)
 
     def OnDeleteClick(self):
         #Query to delete Data
