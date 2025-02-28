@@ -33,6 +33,9 @@ class MainApp(QMainWindow, ui):
         self.editStd.clicked.connect(self.OnEditClick)
         self.AddEditDelMarks.triggered.connect(self.showAddDeleteEditMarkTab)
         self.btnSaveMark.clicked.connect(self.AddMarks)
+        self.btnGetMarks.clicked.connect(self.getMarks)
+        self.btnDeleteMark.clicked.connect(self.deleteMarks)
+        self.btnEditMark.clicked.connect(self.editMarks)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Return or e.key() == Qt.Key_Enter:
@@ -61,8 +64,9 @@ class MainApp(QMainWindow, ui):
             elif self.editRegis_num.hasFocus():
                 # show QDialog search
                 try:
-                    self.searchDialog = SearchDialog(callback=self.handle_selected_value_of_edit)
-                    self.searchDialog.show()
+                    if not self.searchDialog or not self.searchDialog.isVisible():
+                        self.searchDialog = SearchDialog(callback=self.handle_selected_value_of_edit)
+                        self.searchDialog.show()
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"An error occurred: {e}")
             elif self.editName.hasFocus():
@@ -81,8 +85,9 @@ class MainApp(QMainWindow, ui):
                 self.editStandard.setFocus()
             elif self.AddMarkRegisNum.hasFocus():
                 try:
-                    self.searchDialog = SearchDialog(callback=self.handle_selected_value_of_add_marks)
-                    self.searchDialog.show()
+                    if not self.searchDialog or not self.searchDialog.isVisible():
+                        self.searchDialog = SearchDialog(callback=self.handle_selected_value_of_add_marks)
+                        self.searchDialog.show()
                 except Exception as e:
                     QMessageBox.critical(self, "Error", f"An error occurred: {e}")
             elif self.AddExamName.hasFocus():
@@ -93,6 +98,21 @@ class MainApp(QMainWindow, ui):
                 self.AddScience.setFocus()
             elif self.AddScience.hasFocus():
                 self.AddSocial.setFocus()
+            elif self.EditMarkRegisNum.hasFocus():
+                try:
+                    if not self.searchDialog or not self.searchDialog.isVisible():
+                        self.searchDialog = SearchDialog(callback=self.handle_selected_value_of_edit_delete_marks)
+                        self.searchDialog.show()
+                except Exception as e:
+                    QMessageBox.critical(self, "Error", f"An error occurred: {e}")
+            elif self.EditExamName.hasFocus():
+                self.EditLanguage.setFocus()
+            elif self.EditLanguage.hasFocus():
+                self.EditMaths.setFocus()
+            elif self.EditMaths.hasFocus():
+                self.EditScience.setFocus()
+            elif self.EditScience.hasFocus():
+                self.EditSocial.setFocus()
         else:
             super().keyPressEvent(e)
 
@@ -155,7 +175,6 @@ class MainApp(QMainWindow, ui):
     def handle_selected_value_of_edit(self, value):
         self.id = value
         print(self.id)
-        ### Query to get the data and fill in the text field TODO
         data = self.db.fetch_query("select * from student where id = %s", (self.id, ))
         print(data)
         if data:
@@ -243,6 +262,69 @@ class MainApp(QMainWindow, ui):
         self.AddMaths.clear()
         self.AddScience.clear()
         self.AddSocial.clear()
+
+    def handle_selected_value_of_edit_delete_marks(self, value):
+        self.id = value
+        data = self.db.fetch_query("select registration_number from student where id=%s", (self.id,))
+        data = data[0]
+        if data:
+            self.EditMarkRegisNum.setText(data[0])
+            self.EditExamName.clear()
+            try:
+                exam_names = self.db.fetch_query(
+                    "select distinct exam_name from mark where registration_number=%s",
+                    (self.EditMarkRegisNum.text(),)
+                )
+                print(exam_names)
+                for i in range(len(exam_names)):
+                    self.EditExamName.addItem(exam_names[i][0])
+            except Exception as e:
+                print("An error occurred:", e)
+        self.EditExamName.setFocus()
+
+    def getMarks(self):
+        exam_name = self.EditExamName.currentText()
+        if self.EditMarkRegisNum.text() != "" or exam_name != "":
+            try:
+                marks = self.db.fetch_query(
+                    "select language, maths, science, social from mark where registration_number=%s and exam_name=%s",
+                    (self.EditMarkRegisNum.text(), exam_name)
+                )
+                print(marks)
+                if marks:
+                    marks = marks[0]
+                    self.EditLanguage.setText(str(marks[0]))
+                    self.EditMaths.setText(str(marks[1]))
+                    self.EditScience.setText(str(marks[2]))
+                    self.EditSocial.setText(str(marks[3]))
+                    self.EditLanguage.setFocus()
+            except Exception as e:
+                print("An error occurred:", e)
+        else:
+            QMessageBox.warning(self, "Error", "Please enter Registration Number and Exam Name")
+
+    def deleteMarks(self):
+        try:
+            self.db.execute_query(
+                "delete from mark where registration_number=%s and exam_name=%s",
+                (self.EditMarkRegisNum.text(), self.EditExamName.currentText())
+            )
+            print("Delete Successfully")
+            self.clearEditDelMark()
+        except Exception as e:
+            print("Error in deleting:", e)
+        self.EditMarkRegisNum.setFocus()
+
+    def editMarks(self):
+        pass
+
+    def clearEditDelMark(self):
+        self.EditMarkRegisNum.clear()
+        self.EditExamName.clear()
+        self.EditLanguage.clear()
+        self.EditMaths.clear()
+        self.EditScience.clear()
+        self.EditSocial.clear()
 
 def main():
     app = QApplication(sys.argv)

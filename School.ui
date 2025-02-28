@@ -1529,6 +1529,9 @@ color: rgb(147, 56, 70);</string>
         <string notr="true">background-color: rgb(255, 235, 235);
 color: rgb(157, 49, 49);r</string>
        </property>
+       <property name="readOnly">
+        <bool>true</bool>
+       </property>
       </widget>
      </widget>
      <widget class="QGroupBox" name="groupBox_2">
@@ -1668,6 +1671,9 @@ color: rgb(157, 49, 49);r</string>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 235, 235);
 color: rgb(157, 49, 49);r</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
       <widget class="QLabel" name="label_40">
@@ -1857,6 +1863,9 @@ font: 14pt &quot;MS Shell Dlg 2&quot;;</string>
        <property name="styleSheet">
         <string notr="true">background-color: rgb(255, 235, 235);
 color: rgb(157, 49, 49);r</string>
+       </property>
+       <property name="readOnly">
+        <bool>true</bool>
        </property>
       </widget>
      </widget>
