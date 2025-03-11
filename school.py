@@ -36,6 +36,7 @@ class MainApp(QMainWindow, ui):
         self.btnGetMarks.clicked.connect(self.getMarks)
         self.btnDeleteMark.clicked.connect(self.deleteMarks)
         self.btnEditMark.clicked.connect(self.editMarks)
+        self.MarksReport.triggered.connect(self.showMarksReport)
 
     def keyPressEvent(self, e):
         if e.key() == Qt.Key_Return or e.key() == Qt.Key_Enter:
@@ -325,6 +326,33 @@ class MainApp(QMainWindow, ui):
         self.EditMaths.clear()
         self.EditScience.clear()
         self.EditSocial.clear()
+
+    def showMarksReport(self):
+        self.tabWidget.setCurrentIndex(7)
+        self.reportName.setText("Marks Report")
+        self.marksReport()
+
+    def marksReport(self):
+        try:
+            data = self.db.fetch_query(
+                "select student.full_name, mark.exam_name, mark.language, mark.maths, mark.science, mark.social from mark "
+                "inner join student on mark.registration_number=student.registration_number")
+            print(data)
+
+            column_names = ["Name", "Exam Name", "Language", "Maths", "Science", "Social"]
+            model = QStandardItemModel(len(data), len(data[0]), self)
+            model.setHorizontalHeaderLabels(column_names)
+
+            # Populate the model with data
+            for row_idx, row in enumerate(data):
+                for col_idx, value in enumerate(row):
+                    item = QStandardItem(str(value))
+                    model.setItem(row_idx, col_idx, item)
+
+            self.tbReport.setModel(model)
+            self.tbReport.horizontalHeader().setSectionResizeMode(QHeaderView.Stretch)
+        except Exception as e:
+            print("Error in fetching marks:", e)
 
 def main():
     app = QApplication(sys.argv)

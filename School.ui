@@ -62,7 +62,7 @@ background-color: rgb(157, 49, 49);</string>
      <string notr="true">background-color: rgb(157, 49, 49);</string>
     </property>
     <property name="currentIndex">
-     <number>4</number>
+     <number>7</number>
     </property>
     <widget class="QWidget" name="tab">
      <attribute name="title">
@@ -2892,7 +2892,7 @@ color: rgb(157, 49, 49);r</string>
        <set>Qt::AlignCenter</set>
       </property>
      </widget>
-     <widget class="QTableView" name="tableView">
+     <widget class="QTableView" name="tbReport">
       <property name="geometry">
        <rect>
         <x>90</x>
@@ -2907,7 +2907,7 @@ background-color: rgb(255, 235, 235);
 font: 10pt &quot;MS Shell Dlg 2&quot;;</string>
       </property>
      </widget>
-     <widget class="QLabel" name="label_66">
+     <widget class="QLabel" name="reportName">
       <property name="geometry">
        <rect>
         <x>380</x>
